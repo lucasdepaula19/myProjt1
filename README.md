@@ -13,3 +13,5 @@ python manage.py migrate people
 
 
 https://github.com/ticksmas/django_sample
+
+teste commit
