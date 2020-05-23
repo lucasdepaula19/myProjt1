@@ -1,3 +1,6 @@
+http://localhost:8000/people/
+http://localhost:8000/people/listar/
+
 Comandos
 
 python -m venv virtualenv
