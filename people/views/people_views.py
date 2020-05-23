@@ -46,13 +46,14 @@ def cadastro(request):
 
 def cadastrar(request):
 	dtNascimento = datetime.strptime(request.POST['dtNascimento'], "%d/%m/%Y").date()
-	p = Pessoa.objects.nova(request.POST['nome'],
-			request.POST['idade'],
-			dtNascimento,
-			request.POST['cpf'],
-			request.POST['logradouro'],
-			request.POST['numero'],
-			request.POST['bairro'],
-			request.POST['cep'])
+	p = Pessoa.objects.nova(
+		request.POST['nome'],
+		request.POST['idade'],
+		dtNascimento,
+		request.POST['cpf'],
+		request.POST['logradouro'],
+		request.POST['numero'],
+		request.POST['bairro'],
+		request.POST['cep'])
 
 	return HttpResponse(f"{p} cadastrado com sucesso")

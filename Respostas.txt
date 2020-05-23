@@ -1,0 +1,67 @@
+1.Como organizar modelos em módulos?
+
+Cada arquivo em Python é chamado de módulo. Módulos são um conjunto de códigos como funções, classes, variáveis, etc.
+
+
+2.Como criar modelos com herança? De quais tipos?
+
+class Carro():
+    def __init__(self):
+	print("xpto")
+    def getMotor(self):
+	print("xpto")
+ 
+class Taxi(Carro):
+    def __init__(self):
+        Carro.__init__(self)
+        self.getMotor()
+
+Este é um exemplo de uma classe não abstrata e a classe carro não será perssistida no banco. Caso o código abaixo seja adicionado a classe, ela se torna uma classe abstrata e classe carro seria perssistida no banco.
+
+ class Meta:
+     abstract = True
+
+
+3.Como criar Enumeration types e usar como choices?
+
+Uma enumeração é um conjunto de nomes simbólicos (membros) vinculados a valores constantes únicos. Dentro de uma enumeração, os membros podem ser comparados por identidade e a própria enumeração pode ser iterada.
+
+ex.:
+>>> from enum import Enum
+>>> class Color(Enum):
+...     RED = 1
+...     GREEN = 2
+...     BLUE = 3
+>>> print(Color.RED.name)
+RED
+
+
+4.No projeto da aula, crie pelo menos quatro queries customizadas. Use as informações em https://docs.djangoproject.com/en/3.0/topics/db/queries/
+
+
+5.O que é, para quê serve e como usar um Proxy no modelo?
+
+Quando trabalhamos com herança, uma nova tabela de banco de dados é criada para cada subclasse de um modelo. Com o modelo de proxy você pode alterar este comportamento e modificar coisas como a ordem do modelo, alterar o gerenciador padrão ou incluir um novo método, sem precisar alterar o modelo original.
+
+Como declarar um modelo de proxy:
+class MyPerson(Person):
+    class Meta:
+        proxy = True
+
+
+6.O que faz o método __str__() em uma classe?
+
+__str__ é um método especial, como __init__, usado para retornar uma representação de string de um objeto.
+
+
+7.Quais são e para que servem as propriedades adicionais dos tipos de relacionamento/mapeamento?
+
+Exemplos de modelo de relacionamento:
+Many-to-many relationships
+Para definir um relacionamento muitos-para-muitos, use ManyToManyField
+
+Many-to-one relationships
+Para definir um relacionamento muitos-para-um, use ForeignKey:
+
+One-to-one relationships
+Para definir um relacionamento um para um, use OneToOneField.
