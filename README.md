@@ -1,3 +1,4 @@
+http://localhost:8000/people/cadastro/
 http://localhost:8000/people/
 http://localhost:8000/people/listar/
 
