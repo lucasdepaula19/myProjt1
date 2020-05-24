@@ -5,10 +5,8 @@ class PessoaDAO(models.Manager):
 	def retorna_C(self):
 		return self.filter(nome__startswith="C")
 
-	def nova(nome, idade, data_nascimento, cpf,
-		logradouro, numero, bairro, cep):
-		p = Pessoa(nome=nome, idade=idade,
-			data_nascimento = data_nascimento, cpf = cpf)
+	def nova(nome, idade, cpf, logradouro, numero, bairro, cep):
+		p = Pessoa(nome=nome, idade=idade, cpf = cpf)
 		end = Endereco(pessoa=p,
 			logradouro=logradouro, numero=numero,
 			bairro=bairro, cep=cep)
@@ -19,7 +17,6 @@ class PessoaDAO(models.Manager):
 class Pessoa(models.Model):
 	nome = models.CharField(max_length=200)
 	idade = models.IntegerField(default=0)
-	data_nascimento = models.DateField(null=True)
 	cpf = models.CharField(max_length=14, null=True)
 
 	def __str__(self):
