@@ -47,3 +47,35 @@ def cadastro(request):
 def cadastrar(request):
 	p = Pessoa.objects.nova(request.POST['nome'], request.POST['idade'], request.POST['cpf'], request.POST['logradouro'], request.POST['numero'], request.POST['bairro'], request.POST['cep'])
 	return HttpResponse(f"{p} cadastrado com sucesso")
+
+def inicia_com(request, letra_pessoa):
+	result = Pessoa.objects.filter(nome__startswith=letra_pessoa)
+	template = loader.get_template('listar.html')
+	context = {
+		'lista' : result,
+	}
+	return HttpResponse(template.render(context, request))
+
+def termina_com(request, letra_pessoa):
+	result = Pessoa.objects.filter(nome__endswith=letra_pessoa)
+	template = loader.get_template('listar.html')
+	context = {
+		'lista' : result,
+	}
+	return HttpResponse(template.render(context, request))
+
+def contem(request, letra_pessoa):
+	result = Pessoa.objects.filter(nome__contains=letra_pessoa)
+	template = loader.get_template('listar.html')
+	context = {
+		'lista' : result,
+	}
+	return HttpResponse(template.render(context, request))
+
+def nao_contem(request, letra_pessoa):
+	result = Pessoa.objects.exclude(nome__contains=letra_pessoa)
+	template = loader.get_template('listar.html')
+	context = {
+		'lista' : result,
+	}
+	return HttpResponse(template.render(context, request))
