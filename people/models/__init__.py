@@ -1,2 +1,2 @@
 
-from .pessoa import Pessoa, PessoaDAO, Endereco
+from .pessoa import Pessoa, PessoaDAO, Endereco, Automovel, Conjuge

@@ -23,7 +23,16 @@ class Pessoa(models.Model):
 		return f"{self.nome} (id={self.id})"
 
 	def detalhar(self):
-		result = Endereco.objects.get(pessoa__id=self.id)
+		result1 = Endereco.objects.get(pessoa__id=self.id)
+		result2 = Conjuge.objects.get(pessoa__id=self.id)
+		result3 = Automovel.objects.get(pessoa__id=self.id)
+
+		result = {
+			"conjuge": result2,
+			"endereco": result1,
+			"automovel": result3
+			}
+
 		if(result):
 			return result
 
@@ -37,7 +46,28 @@ class Endereco(models.Model):
 	cep = models.CharField(max_length=9)
 	
 	def __str__(self):
-		detalhe = f"""{self.logradouro}, {self.numero}.
+		detalhe = f""" {self.logradouro}, n°: {self.numero}.
 			Bairro {self.bairro}. CEP: {self.cep}
 		"""
+		return detalhe
+
+
+#Exercício_2
+class Automovel(models.Model):
+	pessoa = models.ForeignKey("Pessoa", on_delete=models.CASCADE)
+	modelo = models.CharField(max_length=200)
+	marca = models.CharField(max_length=200)
+	cor = models.CharField(max_length=200)
+	
+	def __str__(self):
+		detalhe = f""" Modelo: {self.modelo}, Marca: {self.marca}, Cor: {self.cor}"""
+		return detalhe
+
+class Conjuge(models.Model):
+	pessoa = models.ForeignKey("Pessoa", on_delete=models.CASCADE)
+	nome = models.CharField(max_length=200)
+	idade = models.IntegerField()
+	
+	def __str__(self):
+		detalhe = f""" {self.nome}, Idade: {self.idade}"""
 		return detalhe

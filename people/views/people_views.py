@@ -37,17 +37,25 @@ def excluir(request, id_pessoa):
 		return HttpResponse("Pessoa não encontrada")
 
 def cadastro(request):
-	sexos = ['Masculino','Feminino']
+	"""sexos = ['Masculino','Feminino']
 	template = loader.get_template('cadastrar.html')
 	context = {
 		'sexos': sexos,
 	}
+	return HttpResponse(template.render(context, request))"""
+
+	context = {
+	}
+	template = loader.get_template('cadastrar.html')
 	return HttpResponse(template.render(context, request))
 
 def cadastrar(request):
 	p = Pessoa.objects.nova(request.POST['nome'], request.POST['idade'], request.POST['cpf'], request.POST['logradouro'], request.POST['numero'], request.POST['bairro'], request.POST['cep'])
 	return HttpResponse(f"{p} cadastrado com sucesso")
 
+
+
+#Exercício_3
 def inicia_com(request, letra_pessoa):
 	result = Pessoa.objects.filter(nome__startswith=letra_pessoa)
 	template = loader.get_template('listar.html')
