@@ -15,5 +15,7 @@ urlpatterns = [
 	path('excluir/<int:id_pessoa>/', pv.excluir, name="excluir"),
 	path('cadastro/', pv.cadastro, name="cadastro"),
 	
-	path('cadastrar/', pv.cadastrar, name="cadastrar")
+	path('cadastrar/', pv.cadastrar, name="cadastrar"),
+
+	path('criarAutomovel/', pv.criar_automovel, name="criar_automovel")
 ]

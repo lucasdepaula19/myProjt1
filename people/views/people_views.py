@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
@@ -6,7 +6,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.template import loader
 from django.shortcuts import render
 from datetime import datetime
-from ..models import Pessoa, Endereco
+from ..models import Pessoa, Endereco, Automovel, Conjuge
+from ..forms import AutomovelForm
 
 @require_http_methods(["GET","POST"])
 def home(request):
@@ -86,4 +87,28 @@ def nao_contem(request, letra_pessoa):
 	context = {
 		'lista' : result,
 	}
+	return HttpResponse(template.render(context, request))
+
+
+#exercício_4
+@csrf_exempt
+@require_http_methods(["POST","GET"])
+def criar_automovel(request):
+	form2 = AutomovelForm(request.POST or None)
+
+	"""if(form.is_valid()):
+		form.save()
+		return redirect('listar')
+
+	return render(request, 'automovel-form.html', {'form', form})"""
+
+	context = {
+		'form': AutomovelForm(request.POST or None),
+	}
+
+	if(form2.is_valid()):
+		form2.save()
+		return redirect('listar')
+
+	template = loader.get_template('automovel-form.html')
 	return HttpResponse(template.render(context, request))
