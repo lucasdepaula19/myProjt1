@@ -22,7 +22,7 @@ class Pessoa(models.Model):
 	def __str__(self):
 		return f"{self.nome} (id={self.id})"
 
-	def detalhar(self):
+	"""def detalhar(self):
 		result1 = Endereco.objects.get(pessoa__id=self.id)
 		result2 = Conjuge.objects.get(pessoa__id=self.id)
 		result3 = Automovel.objects.get(pessoa__id=self.id)
@@ -34,9 +34,15 @@ class Pessoa(models.Model):
 			}
 
 		if(result):
+			return result"""
+
+	def detalhar(self):
+		result = Endereco.objects.get(pessoa__id=self.id)
+		if(result):
 			return result
 
 	objects = PessoaDAO()
+
 
 class Endereco(models.Model):
 	pessoa = models.ForeignKey("Pessoa", on_delete=models.CASCADE)
@@ -53,18 +59,28 @@ class Endereco(models.Model):
 
 
 #Exercício_2
+class Aluno(models.Model):
+	nome = models.CharField(max_length=200)
+	idade = models.IntegerField(default=0)
+	cpf = models.CharField(max_length=14, null=True)
+	automovel = models.ForeignKey("Automovel", on_delete=models.CASCADE)
+	conjuge = models.ForeignKey("Conjuge", on_delete=models.CASCADE)
+
+	def __str__(self):
+		#detalhe = f""" Nome: {self.nome}, Idade: {self.idade}, CPF: {self.cpf}, Automóvel: {self.automovel}, Conjuge: {self.conjuge}"""
+		detalhe = f""" Nome: {self.nome}"""
+		return detalhe
+
 class Automovel(models.Model):
-	pessoa = models.ForeignKey("Pessoa", on_delete=models.CASCADE)
 	modelo = models.CharField(max_length=200)
 	marca = models.CharField(max_length=200)
 	cor = models.CharField(max_length=200)
 	
 	def __str__(self):
-		detalhe = f""" Modelo: {self.modelo}, Marca: {self.marca}, Cor: {self.cor}"""
+		detalhe = f""" {self.modelo}, Marca: {self.marca}, Cor: {self.cor}"""
 		return detalhe
 
 class Conjuge(models.Model):
-	pessoa = models.ForeignKey("Pessoa", on_delete=models.CASCADE)
 	nome = models.CharField(max_length=200)
 	idade = models.IntegerField()
 	

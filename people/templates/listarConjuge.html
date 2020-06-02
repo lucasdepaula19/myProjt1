@@ -11,11 +11,11 @@
 {% load static %}
 {% if lista %}
 	<ul>
-	{% for pessoa in lista %}
+	{% for conjuge in lista %}
 		<!-- li><a href="/people/detalhar/{{ pessoa.id }}/">{{pessoa}}</a></li -->
 		<li>
-			<a href="{% url 'detalhar' pessoa.id %}">{{pessoa}}</a>
-			<a href="{% url 'excluir' pessoa.id %}">
+			<a href="{% url 'detalharConjuge' conjuge.id %}">{{conjuge}}</a>
+			<a href="{% url 'excluirConjuge' conjuge.id %}">
 				<img src="{% static 'excluir.png' %}" width="20" height="20">
 			</a>
 		</li>
@@ -23,5 +23,5 @@
 	</ul>
 
 {% else %}
-	<p>Não há pessoas cadastradas</p>
+	<p>Não há conjuges cadastradas</p>
 {% endif %}

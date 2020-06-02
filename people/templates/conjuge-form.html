@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Formulário para criação de conjuges</h1>
+	<form method="POST">
+		{% csrf_token %}
+        {{ form }}
+		<button type="submit">Save</button>
+	</form>
+</body>
+</html>
