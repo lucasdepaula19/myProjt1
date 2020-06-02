@@ -29,7 +29,7 @@ def listar(request):
 def listar_aluno(request):
 	result = Aluno.objects.all()
 	#result = Pessoa.objects.retorna_C()
-	template = loader.get_template('listar.html')
+	template = loader.get_template('listarAluno.html')
 	context = {
 		'lista' : result,
 	}
@@ -40,7 +40,7 @@ def listar_aluno(request):
 def listar_automovel(request):
 	result = Automovel.objects.all()
 	#result = Pessoa.objects.retorna_C()
-	template = loader.get_template('listar.html')
+	template = loader.get_template('listarAutomovel.html')
 	context = {
 		'lista' : result,
 	}
@@ -51,18 +51,18 @@ def listar_automovel(request):
 def listar_conjuge(request):
 	result = Conjuge.objects.all()
 	#result = Pessoa.objects.retorna_C()
-	template = loader.get_template('listar.html')
+	template = loader.get_template('listarConjuge.html')
 	context = {
 		'lista' : result,
 	}
 	return HttpResponse(template.render(context, request))
 
-def detalhar(request, id_pessoa):
+def detalharPessoa(request, id_pessoa):
 	pessoa = Pessoa.objects.get(id=id_pessoa)
 	context = {'pessoa':pessoa}
 	return render(request, 'detalhe.html', context)
 
-def excluir(request, id_pessoa):
+def excluirPessoa(request, id_pessoa):
 	try:
 		pessoa = Pessoa.objects.get(id=id_pessoa)
 		pessoa.delete()		
@@ -92,7 +92,7 @@ def excluirAutomovel(request, id_automovel):
 	try:
 		automovel = Automovel.objects.get(id=id_automovel)
 		automovel.delete()		
-		return HttpResponse(f"Excluiu {automovel.nome} (id={automovel.id})")
+		return HttpResponse(f"Excluiu {automovel.modelo} (id={automovel.id})")
 	except ObjectDoesNotExist:
 		return HttpResponse("Automovel não encontrada")
 

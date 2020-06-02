@@ -20,8 +20,8 @@ urlpatterns = [
 	path('detalharConjuge/<int:id_conjuge>/', pv.detalharConjuge, name="detalharConjuge"),
 	path('excluirConjuge/<int:id_conjuge>/', pv.excluirConjuge, name="excluirConjuge"),
 
-	path('detalhar/<int:id_pessoa>/', pv.detalhar, name="detalhar"),
-	path('excluir/<int:id_pessoa>/', pv.excluir, name="excluir"),
+	path('detalharPessoa/<int:id_pessoa>/', pv.detalharPessoa, name="detalharPessoa"),
+	path('excluirPessoa/<int:id_pessoa>/', pv.excluirPessoa, name="excluirPessoa"),
 	
 	path('cadastro/', pv.cadastro, name="cadastro"),
 	path('cadastrar/', pv.cadastrar, name="cadastrar"),

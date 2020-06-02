@@ -68,7 +68,7 @@ class Aluno(models.Model):
 
 	def __str__(self):
 		#detalhe = f""" Nome: {self.nome}, Idade: {self.idade}, CPF: {self.cpf}, Automóvel: {self.automovel}, Conjuge: {self.conjuge}"""
-		detalhe = f""" Nome: {self.nome}"""
+		detalhe = f""" {self.nome}"""
 		return detalhe
 
 class Automovel(models.Model):
